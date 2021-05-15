@@ -1,0 +1,30 @@
+// create alert for keyword
+    // check for alphabet only (no numbers or characters)
+    // store keyword in variable
+            // consider displaying the letters of word in each div upon load but applying a class that hides it
+            // remove hidden class when that letter is figured out
+        // convert into array for comparison?
+    // flames and witch appear
+    // alphabet divs appear 
+
+// have number empty slots on screen display keyword length
+
+// create right guess counter
+    // when right guesses >= 2 remove flame
+// create wrong guess counter
+    // when wrong guess = 5 we should exit game
+
+// button that checks guess
+    // if letter exists in keyphrase
+        // flame should disappear   
+        // right guess counter updates 
+        // letter is revealed in answer div
+    // if it does not
+        // flames remain
+        // wrong guess counter updates
+    
+
+
+
+
+
