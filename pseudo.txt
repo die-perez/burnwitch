@@ -1,9 +1,10 @@
 // create alert for keyword
     // check for alphabet only (no numbers or characters)
     // store keyword in variable
-            // consider displaying the letters of word in each div upon load but applying a class that hides it
-            // remove hidden class when that letter is figured out
-        // convert into array for comparison?
+        // create empty slot in secret word area for word.length
+        // consider displaying the letters of word in each div upon load but applying a class that hides it
+        // remove hidden class when that letter is figured out
+        // convert into array for comparison
     // flames and witch appear
     // alphabet divs appear 
 
