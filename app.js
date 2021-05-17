@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
     // global event listeners
+    let witch = document.getElementById("witch")
     let keywordHoldingArea = document.querySelector("#wordToGuess")
     let score = document.querySelector("#scoreboard")
     
@@ -17,7 +18,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // convert into array for comparison
     let arr = keyword.split("")
-    console.log(arr)
 
     // have number empty slots on screen display keyword length
     function pushKeywordToMain(){
@@ -34,7 +34,16 @@ window.addEventListener("DOMContentLoaded", () => {
     pushKeywordToMain()
 
 
+    document.querySelectorAll(".alphabet").forEach(item => {
+        item.addEventListener("click", event => {
+          let letter = event.target.id
+          console.log(`${letter} was clicked! 🤘🏽`)
 
+          let guess = new Guess (letter)
+          guess.compare()
+          
+        })
+      })
 
 
 
@@ -65,14 +74,11 @@ window.addEventListener("DOMContentLoaded", () => {
             }
             if (!letterFound) {
                 Guess.wrongGuesses++
-                console.log(Guess.wrongGuesses)
                 score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
+
             }
         }
     }
-
-    const guessOne = new Guess ('d')
-    guessOne.compare()
 
 })
 
