@@ -1,20 +1,21 @@
 window.addEventListener("DOMContentLoaded", () => {
     // global event listeners
     let witch = document.getElementById("witch")
+    let fire = document.querySelector(".fire")
     let keywordHoldingArea = document.querySelector("#wordToGuess")
     let score = document.querySelector("#scoreboard")
     
     
-    // create prompt for keyword
-    // var keyword = prompt("Player one, type in a keyword")
+    //create prompt for keyword
+    var keyword = prompt("Player one, type in a keyword")
     
-    // check for alphabet only (no numbers or characters)
-    // while (!keyword || !keyword.match(/^[a-z]+$/)) {
-    //     alert("Only letters are allowed, no spaces or special characters.");
-    //     var keyword = prompt("Player one, type in a keyword")
-    // }
+    //check for alphabet only (no numbers or characters)
+    while (!keyword || !keyword.match(/^[a-z]+$/)) {
+        alert("Only letters are allowed, no spaces or special characters.");
+        var keyword = prompt("Player one, type in a keyword")
+    }
 
-    var keyword = "banana"
+    // var keyword = "banana"
 
     // convert into array for comparison
     let arr = keyword.split("")
@@ -38,13 +39,11 @@ window.addEventListener("DOMContentLoaded", () => {
         item.addEventListener("click", event => {
           let letter = event.target.id
           console.log(`${letter} was clicked! 🤘🏽`)
-
           let guess = new Guess (letter)
           guess.compare()
           
         })
       })
-
 
 
     // handling a new guess
@@ -75,7 +74,14 @@ window.addEventListener("DOMContentLoaded", () => {
             if (!letterFound) {
                 Guess.wrongGuesses++
                 score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
+            }
 
+            if (Guess.wrongGuesses === 3){
+                console.log('you have lost 😔')
+                score.innerText = "Her blood is on your hands..."
+                score.classList.add("final-message")
+                witch.classList.add("shake")
+                fire.classList.add("shake")
             }
         }
     }

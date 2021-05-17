@@ -1,6 +1,11 @@
 @-webkit-keyframes shake-vertical{0%,100%{-webkit-transform:translateY(0);transform:translateY(0)}10%,30%,50%,70%{-webkit-transform:translateY(-8px);transform:translateY(-8px)}20%,40%,60%{-webkit-transform:translateY(8px);transform:translateY(8px)}80%{-webkit-transform:translateY(6.4px);transform:translateY(6.4px)}90%{-webkit-transform:translateY(-6.4px);transform:translateY(-6.4px)}}@keyframes shake-vertical{0%,100%{-webkit-transform:translateY(0);transform:translateY(0)}10%,30%,50%,70%{-webkit-transform:translateY(-8px);transform:translateY(-8px)}20%,40%,60%{-webkit-transform:translateY(8px);transform:translateY(8px)}80%{-webkit-transform:translateY(6.4px);transform:translateY(6.4px)}90%{-webkit-transform:translateY(-6.4px);transform:translateY(-6.4px)}}
 
 body {
+    /* background-image: url(/img/jamie-hagan-jWLLzJ7S2tc-unsplash.jpg);
+    background-position: no-repeat;
+    background-position: center;
+    background-size: cover; */
+    font-family: 'Pirata One', cursive;
     display: grid;
     min-height: 100vh;
     margin: 0;
@@ -19,19 +24,20 @@ header {
     text-align: center;
     padding: 15px;
     background-color: black;
+    opacity: 0.8;
     color: white;
 
 }
 
 #scoreboard {
-    margin: 30px;
     grid-area: score;
+    margin: 30px;
+    font-size: 1.5rem;
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: 5px solid red;
 }
 
 #wordToGuess{
@@ -62,24 +68,62 @@ aside {
     -webkit-animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both;animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both
 }
 
+
+#witch {
+    /* height: 100vh; */
+    padding-top: 15vh;
+}
+
+#witch-img {
+    height: 650px;
+    width: auto;
+}
+
 .fire{
+    position: absolute;
+    opacity: 0.9;
+    top: 600px;
     display: flex;
     height: auto;
     width: 512px;
 }
 
-#flameOne, #flameTwo, #flameThree {
-    background-image: url(/img/noun_Fire_3116165.png);
+#flameOne, #flameTwo, #flameThree, #flameFour {
+    background-image: url("https://im3.ezgif.com/tmp/ezgif-3-a04862cf6bed.gif");
     background-repeat: no-repeat;
     background-size: contain;
-    height: 200px;
-    width: 200px;
-
+    height: 300px;
+    width: auto;
     display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
 }
 
+#flameOne {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+#flameTwo {
+    display: flex;
+    flex-grow: 2;
+    justify-content: space-evenly;
+}
+
+#flameThree {
+    display: flex;
+    flex-grow: 2;
+    justify-content: left;
+    justify-content: flex-start;
+}
+
+#flameFour {
+    display: flex;
+    flex-grow: 1;
+    justify-content: left;
+    justify-content: flex-start;
+}
 
 main {
     grid-area: main;
@@ -90,14 +134,18 @@ main {
 }
 
 button {
-    font-family: 'UnifrakturMaguntia', cursive;
+    font-family: 'Pirata One', cursive;
     font-size: 2rem;
     display: inline-flex;
     padding: 15px;
     margin: 15px;
+    width: 50px;
+    height: auto;
     border: 1px solid black;
     background-color: white;
-
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
 }
 
 button:hover {
@@ -105,4 +153,8 @@ button:hover {
     color: white
 }
 
-
+.final-message {
+    font-family: 'Pirata One', cursive;
+    font-size: 56px;
+    color: rgb(143, 8, 8);
+}
