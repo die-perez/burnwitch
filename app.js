@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
     // global event listeners
     let keywordHoldingArea = document.querySelector("#wordToGuess")
+    let score = document.querySelector("#scoreboard")
     
     
     // create prompt for keyword
@@ -33,6 +34,11 @@ window.addEventListener("DOMContentLoaded", () => {
     pushKeywordToMain()
 
 
+
+
+
+
+    // handling a new guess
     class Guess {
         static wrongGuesses = 0
         static rightGuesses = 0
@@ -42,21 +48,30 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         compare(){
+            let letterFound = false
+
+            // loop for comparing string to new guess
             for(i=0; i<arr.length; i++){
             console.log(arr[i])
-                if (this.letter == arr[i]) {
+                if (this.letter === arr[i]) {
                     let divs = Array.from(document.getElementsByClassName(this.letter))
                     divs.forEach(element => {
                         element.classList.remove("hidden")
                     });
-                    
+                    Guess.rightGuesses++
+                    console.log(Guess.rightGuesses)
+                    letterFound = true
                 }
             }
+            if (!letterFound) {
+                Guess.wrongGuesses++
+                console.log(Guess.wrongGuesses)
+                score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
+            }
         }
-
     }
 
-    const guessOne = new Guess ('a')
+    const guessOne = new Guess ('d')
     guessOne.compare()
 
 })

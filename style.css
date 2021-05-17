@@ -5,8 +5,9 @@ body {
     min-height: 100vh;
     margin: 0;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 100px 1fr 1fr;
-    grid-template-areas: "header header"    
+    grid-template-rows: 100px .5fr 1fr 1fr;
+    grid-template-areas: "header header"  
+                        "sidebar score"  
                          "sidebar div"
                          "sidebar main"
 }
@@ -20,6 +21,17 @@ header {
     background-color: black;
     color: white;
 
+}
+
+#scoreboard {
+    margin: 30px;
+    grid-area: score;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 5px solid red;
 }
 
 #wordToGuess{
@@ -62,6 +74,7 @@ aside {
     background-size: contain;
     height: 200px;
     width: 200px;
+
     display: inline-flex;
     justify-content: center;
     align-items: center;
