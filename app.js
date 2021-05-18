@@ -6,16 +6,16 @@ window.addEventListener("DOMContentLoaded", () => {
     let score = document.querySelector("#scoreboard")
     
     
-    //create prompt for keyword
-    var keyword = prompt("Player one, type in a keyword")
+    // //create prompt for keyword
+    // var keyword = prompt("Player one, type in a keyword")
     
-    //check for alphabet only (no numbers or characters)
-    while (!keyword || !keyword.match(/^[a-z]+$/)) {
-        alert("Only letters are allowed, no spaces or special characters.");
-        var keyword = prompt("Player one, type in a keyword")
-    }
+    // //check for alphabet only (no numbers or characters)
+    // while (!keyword || !keyword.match(/^[a-z]+$/)) {
+    //     alert("Only letters are allowed, no spaces or special characters.");
+    //     var keyword = prompt("Player one, type in a keyword")
+    // }
 
-    // var keyword = "banana"
+    var keyword = "banana"
 
     // convert into array for comparison
     let arr = keyword.split("")
@@ -67,13 +67,14 @@ window.addEventListener("DOMContentLoaded", () => {
                         element.classList.remove("hidden")
                     });
                     Guess.rightGuesses++
-                    console.log(Guess.rightGuesses)
+                    witch.classList.remove("wrong")
                     letterFound = true
                 }
             }
             if (!letterFound) {
                 Guess.wrongGuesses++
                 score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
+                witch.classList.add("wrong")
             }
 
             if (Guess.wrongGuesses === 3){
@@ -81,7 +82,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 score.innerText = "Her blood is on your hands..."
                 score.classList.add("final-message")
                 witch.classList.add("shake")
-                fire.classList.add("shake")
             }
         }
     }
