@@ -3,32 +3,30 @@
 @-webkit-keyframes vibrate-1{0%{-webkit-transform:translate(0);transform:translate(0)}20%{-webkit-transform:translate(-2px,2px);transform:translate(-2px,2px)}40%{-webkit-transform:translate(-2px,-2px);transform:translate(-2px,-2px)}60%{-webkit-transform:translate(2px,2px);transform:translate(2px,2px)}80%{-webkit-transform:translate(2px,-2px);transform:translate(2px,-2px)}100%{-webkit-transform:translate(0);transform:translate(0)}}@keyframes vibrate-1{0%{-webkit-transform:translate(0);transform:translate(0)}20%{-webkit-transform:translate(-2px,2px);transform:translate(-2px,2px)}40%{-webkit-transform:translate(-2px,-2px);transform:translate(-2px,-2px)}60%{-webkit-transform:translate(2px,2px);transform:translate(2px,2px)}80%{-webkit-transform:translate(2px,-2px);transform:translate(2px,-2px)}100%{-webkit-transform:translate(0);transform:translate(0)}}
 
 body {
-    /* background-image: url(/img/chris-barbalis-aX4zU9Rp7jo-unsplash.jpg);
-    background-position: no-repeat;
-    background-position: center;
-    background-size: cover; */
-    /* background-color:rgb(143, 8, 8); */
     font-family: 'Pirata One', cursive;
     display: grid;
     min-height: 100vh;
-    margin: 0;
+    margin: 0 auto;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 100px .5fr 1fr 1fr;
-    grid-template-areas: "header header"  
-                        "sidebar score"  
-                         "sidebar div"
-                         "sidebar main"
+    grid-template-rows:  .5fr 1fr 1fr 1fr;
+    grid-template-areas: "header score"  
+                         "graphics div"  
+                         "graphics main"
+                         "graphics main"
 }
 
 header {
     font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 4rem;
-    grid-area: header;
+    font-size: 5rem;
     text-align: center;
-    padding: 15px;
+    align-items: center;
     background-color: black;
     color: white;
+}
 
+.heading {
+    padding: 25px;
+    margin-top: 50px;
 }
 
 #scoreboard {
@@ -40,7 +38,6 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: orange;
 }
 
 #wordToGuess{
@@ -62,11 +59,6 @@ header {
     color: white;
 }
 
-
-aside {
-    grid-area: sidebar;
-}
-
 .shake {
     -webkit-animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both;animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both
 }
@@ -76,56 +68,41 @@ aside {
 	        animation: vibrate-1 0.3s linear infinite both;
 }
 
-#witch {
-    /* padding-top: 10vh; */
-    z-index:1;
+#graphics-area {
+    grid-area: graphics;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+#window {
+    position: relative;
+    display: flex;
+    height: 450px;
+    width: 450px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 15px;
+    /* align-items: center; */
+    justify-content: center;
 }
 
 #witch-img {
-    width: 100%;
-    height: 750px;
+    height: 70%;
+    width: 70%;
+    position: absolute;
+    top: -100px;
+    align-items: flex-start;
 }
 
-.back-fire {
-    position:absolute;
-    bottom:0px;
-    z-index:-1;
-    width:100%;
-}
-
-.back-fire img {
-    height:500px;
-    width:500px;
-}
-
-#graphics-area {
-    width: 200px;
-}
-
-.fire{
-    position: fixed;
+#fire-img {
+    position: absolute;
     opacity: 0.9;
     bottom: 0;
-    display: flex;
     height: auto;
-    width: 550px;
-}
-
-#flameOne {
-    background-repeat: no-repeat;
-    bottom: 0;
-    background-size: auto;
-    height: 500px;
-    width: auto;
-    display: inline-flex;
-    /* justify-content: center;
-    align-items: center; */
-}
-
-#flameOne {
-    display: flex;
-    flex-grow: 1;
-    margin-left: 0;
+    width: 100%;
+    border-radius: 50%;
 }
 
 main {
@@ -134,7 +111,7 @@ main {
     justify-content: space-evenly;
     align-content: center;
     flex-wrap: wrap;
-    margin-right: 15px;
+    padding: 50px;
 }
 
 button {
