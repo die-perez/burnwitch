@@ -2,6 +2,10 @@
 
 @-webkit-keyframes vibrate-1{0%{-webkit-transform:translate(0);transform:translate(0)}20%{-webkit-transform:translate(-2px,2px);transform:translate(-2px,2px)}40%{-webkit-transform:translate(-2px,-2px);transform:translate(-2px,-2px)}60%{-webkit-transform:translate(2px,2px);transform:translate(2px,2px)}80%{-webkit-transform:translate(2px,-2px);transform:translate(2px,-2px)}100%{-webkit-transform:translate(0);transform:translate(0)}}@keyframes vibrate-1{0%{-webkit-transform:translate(0);transform:translate(0)}20%{-webkit-transform:translate(-2px,2px);transform:translate(-2px,2px)}40%{-webkit-transform:translate(-2px,-2px);transform:translate(-2px,-2px)}60%{-webkit-transform:translate(2px,2px);transform:translate(2px,2px)}80%{-webkit-transform:translate(2px,-2px);transform:translate(2px,-2px)}100%{-webkit-transform:translate(0);transform:translate(0)}}
 
+@-webkit-keyframes fade-out{0%{opacity:1}100%{opacity:0}}@keyframes fade-out{0%{opacity:1}100%{opacity:0}}
+
+@-webkit-keyframes scale-in-center{0%{-webkit-transform:scale(0);transform:scale(0);opacity:1}100%{-webkit-transform:scale(1);transform:scale(1);opacity:1}}@keyframes scale-in-center{0%{-webkit-transform:scale(0);transform:scale(0);opacity:1}100%{-webkit-transform:scale(1);transform:scale(1);opacity:1}}
+
 body {
     font-family: 'Pirata One', cursive;
     display: grid;
@@ -17,19 +21,27 @@ body {
 
 header {
     font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 5rem;
+    font-size: 3.5rem;
     text-align: center;
     align-items: center;
     background-color: black;
-    color: white;
+}
+
+.gradient-text {
+    background-image: linear-gradient(45deg, rgba(238,29,29,1), rgba(255,229,0,1));
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
 }
 
 .heading {
-    padding: 25px;
+    padding: 2px;
     margin-top: 50px;
 }
 
-#scoreboard {
+.scoreboard {
     grid-area: score;
     margin: 30px;
     font-size: 1.5rem;
@@ -49,14 +61,18 @@ header {
     padding-top: 100px;
 }
 
+.hidden{
+    color: white;
+}
+
 .border {
     border-bottom: 2px solid black;
     display: inline-flex;
     padding: 10px;
 }
 
-.hidden {
-    color: white;
+.fire-out {
+    -webkit-animation:fade-out 1s ease-out both;animation:fade-out 1s ease-out both;
 }
 
 .shake {
@@ -74,6 +90,7 @@ header {
     justify-content: center;
     align-items: center;
     background-color: black;
+    /* width: 100vw; */
 }
 
 #window {
@@ -81,6 +98,8 @@ header {
     display: flex;
     height: 450px;
     width: 450px;
+    background-image: url(/img/chris-barbalis-aX4zU9Rp7jo-unsplash.jpg);
+    background-size: cover;
     background-color: white;
     border-radius: 50%;
     margin: 15px;
@@ -88,7 +107,7 @@ header {
     justify-content: center;
 }
 
-#witch-img {
+.witch-img {
     height: 70%;
     width: 70%;
     position: absolute;
@@ -96,7 +115,7 @@ header {
     align-items: flex-start;
 }
 
-#fire-img {
+.fire-img {
     position: absolute;
     opacity: 0.9;
     bottom: 0;
@@ -138,4 +157,17 @@ button:hover {
     font-family: 'Pirata One', cursive;
     font-size: 56px;
     color: rgb(143, 8, 8);
+    -webkit-animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) both;animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) both
 }
+
+/* Letter chosen */
+
+.crossout {
+    background-image: url(/img/noun_X_2500111.png);
+    background-position: center;
+    background-size: cover;
+    pointer-events: none;
+}
+
+
+
