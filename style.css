@@ -6,6 +6,10 @@
 
 @-webkit-keyframes scale-in-center{0%{-webkit-transform:scale(0);transform:scale(0);opacity:1}100%{-webkit-transform:scale(1);transform:scale(1);opacity:1}}@keyframes scale-in-center{0%{-webkit-transform:scale(0);transform:scale(0);opacity:1}100%{-webkit-transform:scale(1);transform:scale(1);opacity:1}}
 
+@-webkit-keyframes slide-out-tr{0%{-webkit-transform:translateY(0) translateX(0);transform:translateY(0) translateX(0);opacity:1}100%{-webkit-transform:translateY(-1000px) translateX(1000px);transform:translateY(-1000px) translateX(1000px);opacity:0}}@keyframes slide-out-tr{0%{-webkit-transform:translateY(0) translateX(0);transform:translateY(0) translateX(0);opacity:1}100%{-webkit-transform:translateY(-1000px) translateX(1000px);transform:translateY(-1000px) translateX(1000px);opacity:0}}
+
+@-webkit-keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}@keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}
+
 body {
     font-family: 'Pirata One', cursive;
     display: grid;
@@ -72,14 +76,14 @@ header {
 }
 
 .fire-out {
-    -webkit-animation:fade-out 1s ease-out both;animation:fade-out 1s ease-out both;
+    -webkit-animation:fade-out 2s ease-out both;animation:fade-out 2s ease-out both;
 }
 
 .shake {
     -webkit-animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both;animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both
 }
 
-.wrong {
+.wrong-one {
     -webkit-animation: vibrate-1 0.3s linear infinite both;
 	        animation: vibrate-1 0.3s linear infinite both;
 }
@@ -169,8 +173,18 @@ button:hover {
     pointer-events: none;
 }
 
+.wrong-two {
+    background-position: center;
+    background-size: 70%;
+    align-items: center;
+    -webkit-animation:heartbeat 1.5s ease-in-out infinite both;animation:heartbeat 1.5s ease-in-out infinite both
+}
+
 .free-witch {
     background-position: center;
     background-size: contain;
-    -webkit-animation:scale-in-center .7s cubic-bezier(.25,.46,.45,.94) 2.5s both;animation:scale-in-center .7s cubic-bezier(.25,.46,.45,.94) 2.5s both
+    -webkit-animation:scale-in-center .7s cubic-bezier(.25,.46,.45,.94) 2.5s both;animation:scale-in-center .7s cubic-bezier(.25,.46,.45,.94) 2s both
+}
+.fly-out {
+    -webkit-animation:slide-out-tr .5s cubic-bezier(.55,.085,.68,.53) both;animation:slide-out-tr .5s cubic-bezier(.55,.085,.68,.53) both
 }

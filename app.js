@@ -23,10 +23,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // convert into array for comparison
     let arr = keyword.split("")
 
-    // convert to set for finding game win
-    let winningArr = new Set(arr)
-    console.log(winningArr)
-
     // have number empty slots on screen display keyword length
     function pushKeywordToMain(){
         for (i=0; i< arr.length; i++){
@@ -84,18 +80,34 @@ window.addEventListener("DOMContentLoaded", () => {
                     letterFound = true
                 }
             }
+
             if (!letterFound) {
                 Guess.wrongGuesses++
                 score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
-                witch.classList.add("wrong")
+                witch.classList.add("wrong-one")
+            }
+
+            if (Guess.wrongGuesses === 2) {
+                witch.classList.add("fire-out")
+                setTimeout(function(){
+                    witch.className = "wrong-two"
+                    witch.setAttribute("src", "/img/noun_Witch_3572374.png")
+                }, 2000)
+            }
+
+            if (Guess.wrongGuesses === 3) {
+                witch.classList.add("fire-out")
+                setTimeout(function(){
+                    witch.className = "wrong-two"
+                    witch.setAttribute("src", "/img/noun_Witch_3572369.png")
+                }, 2000)
             }
 
             if (Guess.wrongGuesses === 4){
                 gameOVer = true;
                 score.innerText = "Her blood is on your hands..."
                 score.classList.add("final-message")
-                witch.classList.add("shake")
-                
+                witch.classList.add("shake") 
             }
 
             if (arr.length === Guess.rightGuesses){
@@ -106,12 +118,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 witch.className = "free-witch"
                 witch.setAttribute("src", "/img/noun_Witch_13874.png")
                 setTimeout(function(){ 
-                    
-                 }, 2000);
-
+                    witch.classList.add("fly-out")
+                 }, 5000);
             }
-
-            console.log(`You have guessed this many right: ${Guess.rightGuesses}`)
         }
     }
 
