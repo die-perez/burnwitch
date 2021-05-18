@@ -103,7 +103,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 score.classList.add("final-message")
                 score.innerText = "You win!"
                 fire.classList.add("fire-out")
-                witch.classList.remove("witch-image")
+                witch.className = "free-witch"
+                witch.setAttribute("src", "/img/noun_Witch_13874.png")
                 setTimeout(function(){ 
                     
                  }, 2000);

@@ -169,5 +169,8 @@ button:hover {
     pointer-events: none;
 }
 
-
-
+.free-witch {
+    background-position: center;
+    background-size: contain;
+    -webkit-animation:scale-in-center .7s cubic-bezier(.25,.46,.45,.94) 2.5s both;animation:scale-in-center .7s cubic-bezier(.25,.46,.45,.94) 2.5s both
+}
