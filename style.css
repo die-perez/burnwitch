@@ -3,10 +3,11 @@
 @-webkit-keyframes vibrate-1{0%{-webkit-transform:translate(0);transform:translate(0)}20%{-webkit-transform:translate(-2px,2px);transform:translate(-2px,2px)}40%{-webkit-transform:translate(-2px,-2px);transform:translate(-2px,-2px)}60%{-webkit-transform:translate(2px,2px);transform:translate(2px,2px)}80%{-webkit-transform:translate(2px,-2px);transform:translate(2px,-2px)}100%{-webkit-transform:translate(0);transform:translate(0)}}@keyframes vibrate-1{0%{-webkit-transform:translate(0);transform:translate(0)}20%{-webkit-transform:translate(-2px,2px);transform:translate(-2px,2px)}40%{-webkit-transform:translate(-2px,-2px);transform:translate(-2px,-2px)}60%{-webkit-transform:translate(2px,2px);transform:translate(2px,2px)}80%{-webkit-transform:translate(2px,-2px);transform:translate(2px,-2px)}100%{-webkit-transform:translate(0);transform:translate(0)}}
 
 body {
-    background-image: url(/img/jamie-hagan-jWLLzJ7S2tc-unsplash.jpg);
+    /* background-image: url(/img/chris-barbalis-aX4zU9Rp7jo-unsplash.jpg);
     background-position: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; */
+    /* background-color:rgb(143, 8, 8); */
     font-family: 'Pirata One', cursive;
     display: grid;
     min-height: 100vh;
@@ -26,7 +27,6 @@ header {
     text-align: center;
     padding: 15px;
     background-color: black;
-    opacity: 0.8;
     color: white;
 
 }
@@ -40,6 +40,7 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: orange;
 }
 
 #wordToGuess{
