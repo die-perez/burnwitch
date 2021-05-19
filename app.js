@@ -1,11 +1,15 @@
 window.addEventListener("DOMContentLoaded", () => {
-    // global event listeners
+    // Global event listeners
     let witch = document.querySelector(".witch-img")
     let fire = document.querySelector(".fire-img")
     let keywordHoldingArea = document.querySelector("#wordToGuess")
     let score = document.querySelector(".scoreboard")
     let keyboard = document.querySelectorAll(".alphabet")
-  
+    let graphicsArea = document.querySelector(".graphics-area")
+    
+    // Variables
+    let start = true
+    let gameOVer = false
     
     // //create prompt for keyword
     // var keyword = prompt("Player one, type in a keyword")
@@ -16,9 +20,15 @@ window.addEventListener("DOMContentLoaded", () => {
     //     var keyword = prompt("Player one, type in a keyword")
     // }
 
+    
+
+    if (start) {
+        graphicsArea.classList.add("start-screen")
+    }
+
     var keyword = "banana"
 
-    let gameOVer = false
+    
 
     // convert into array for comparison
     let arr = keyword.split("")
@@ -30,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
             div.innerText = (arr[i])
             keywordHoldingArea.appendChild(div)
             div.classList.add("border")
-            div.classList.add("hidden")
+            div.classList.add("hidden-word")
             div.classList.add(arr[i])
         }
     }
@@ -108,6 +118,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 score.innerText = "Her blood is on your hands..."
                 score.classList.add("final-message")
                 witch.classList.add("shake") 
+                setTimeout(function(){ 
+                    witch.classList.add("dead-witch")
+                 }, 3000);
             }
 
             if (arr.length === Guess.rightGuesses){

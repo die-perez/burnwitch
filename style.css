@@ -10,91 +10,47 @@
 
 @-webkit-keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}@keyframes heartbeat{from{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}
 
+@-webkit-keyframes puff-out-center{0%{-webkit-transform:scale(1);transform:scale(1);-webkit-filter:blur(0);filter:blur(0);opacity:1}100%{-webkit-transform:scale(2);transform:scale(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}}@keyframes puff-out-center{0%{-webkit-transform:scale(1);transform:scale(1);-webkit-filter:blur(0);filter:blur(0);opacity:1}100%{-webkit-transform:scale(2);transform:scale(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}}
+
 body {
     font-family: 'Pirata One', cursive;
     display: grid;
     min-height: 100vh;
     margin: 0 auto;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows:  .5fr 1fr 1fr 1fr;
-    grid-template-areas: "header score"  
+    grid-template-rows:  .5fr 1fr 1fr;
+    grid-template-areas: "heading score"  
                          "graphics div"  
                          "graphics main"
-                         "graphics main"
+                         
 }
 
-header {
+h1 {
+    grid-area: heading;
+    position: relative;
     font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 3.5rem;
+    font-size: 5rem;
     text-align: center;
     align-items: center;
     background-color: black;
-}
-
-.gradient-text {
-    background-image: linear-gradient(45deg, rgba(238,29,29,1), rgba(255,229,0,1));
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
-}
-
-.heading {
     padding: 2px;
     margin-top: 50px;
 }
 
-.scoreboard {
-    grid-area: score;
-    margin: 30px;
-    font-size: 1.5rem;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.heading {
+    background-color: black;
 }
 
-#wordToGuess{
-    grid-area: div;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    font-size: 2rem;
-    padding-top: 100px;
-}
-
-.hidden{
-    color: white;
-}
-
-.border {
-    border-bottom: 2px solid black;
-    display: inline-flex;
-    padding: 10px;
-}
-
-.fire-out {
-    -webkit-animation:fade-out 2s ease-out both;animation:fade-out 2s ease-out both;
-}
-
-.shake {
-    -webkit-animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both;animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both
-}
-
-.wrong-one {
-    -webkit-animation: vibrate-1 0.3s linear infinite both;
-	        animation: vibrate-1 0.3s linear infinite both;
-}
-
-#graphics-area {
+.graphics-area {
     grid-area: graphics;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
-    /* width: 100vw; */
+}
+
+.hide {
+    display: none;
 }
 
 #window {
@@ -126,6 +82,73 @@ header {
     height: auto;
     width: 100%;
     border-radius: 50%;
+}
+
+.expand {
+    height:100vh;
+    width: 100vw;
+}
+
+.gradient-text {
+    background-image: linear-gradient(45deg, rgba(238,29,29,1), rgba(255,229,0,1));
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+}
+
+/* .heading {
+    padding: 2px;
+    margin-top: 50px;
+} */
+
+.scoreboard {
+    grid-area: score;
+    margin: 30px;
+    font-size: 1.5rem;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#wordToGuess{
+    grid-area: div;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 2rem;
+    padding-top: 100px;
+}
+
+.hidden-word{
+    color: white;
+}
+
+.border {
+    border-bottom: 2px solid black;
+    display: inline-flex;
+    padding: 10px;
+}
+
+.fire-out {
+    -webkit-animation:fade-out 2s ease-out both;animation:fade-out 2s ease-out both;
+}
+
+.shake {
+    -webkit-animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both;animation:shake-vertical .8s cubic-bezier(.455,.03,.515,.955) both
+}
+
+.wrong-one {
+    -webkit-animation: vibrate-1 0.3s linear infinite both;
+	        animation: vibrate-1 0.3s linear infinite both;
+}
+
+.start-screen {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
 }
 
 main {
@@ -187,4 +210,8 @@ button:hover {
 }
 .fly-out {
     -webkit-animation:slide-out-tr .5s cubic-bezier(.55,.085,.68,.53) both;animation:slide-out-tr .5s cubic-bezier(.55,.085,.68,.53) both
+}
+
+.dead-witch {
+    -webkit-animation:puff-out-center 1s cubic-bezier(.165,.84,.44,1.000) both;animation:puff-out-center 1s cubic-bezier(.165,.84,.44,1.000) both
 }
