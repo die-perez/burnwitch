@@ -11,12 +11,15 @@ window.addEventListener("DOMContentLoaded", () => {
     let graphicsArea = document.querySelector(".graphics-area")
     let form = document.querySelector(".start-form")
     let audio = new Audio('/audio/The-Oppressed.mp3')
+    let laugh =  new Audio('/audio/wlaugh.mp3')
+    let dying = new Audio('/audio/dying.mp3')
+    let scream = new Audio('/audio/scream.mp3')
     
     // variables
     let gameOver = false
     let arr = []
 
-    // audio and loops
+    //audio and loops
     audio.loop = true
     audio.play()
 
@@ -105,16 +108,19 @@ window.addEventListener("DOMContentLoaded", () => {
             if (!letterFound && Guess.wrongGuesses < 4) {
                 Guess.wrongGuesses++
                 score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
-                witch.classList.add("wrong-one")
+                scream.play()
+                witch.classList.add("wrong")
+                witch.classList.add("flicker-out")
             }
 
             if (Guess.wrongGuesses === 2) {
                 witch.classList.add("flicker-out")
+                witch.classList.add("shake")
                 setTimeout(function(){
                     witch.className = "wrong-two"
                     witch.setAttribute("src", "/img/witch3.png")
-                    
-                }, 2000)
+                    witch.classList.add("wrong")
+                }, 1500)
             }
 
             if (Guess.wrongGuesses === 3) {
@@ -122,7 +128,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 setTimeout(function(){
                     witch.className = "wrong-two"
                     witch.setAttribute("src", "/img/noun_Witch_3572374.png")
-                }, 2000)
+                    witch.classList.add("wrong")
+                }, 1500)
             }
 
             if (Guess.wrongGuesses === 4){
@@ -131,8 +138,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 witch.classList.add("shake")
                 witch.setAttribute("src", "/img/witchface.png") 
                 setTimeout(function(){ 
+                    dying.play()
                     witch.classList.add("dead-witch")
-                 }, 3000);
+                 }, 2000);
                  gameOver = true;
             }
 
@@ -144,6 +152,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 witch.className = "free-witch"
                 witch.setAttribute("src", "/img/noun_Witch_13874.png")
                 setTimeout(function(){ 
+                    laugh.play()
                     witch.classList.add("fly-out")
                  }, 3500);
             }
