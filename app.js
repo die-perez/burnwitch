@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
     // Global event listeners
     let beginPress = document.querySelector(".go")
+    let randomWordGenerator = document.querySelector(".random")
     let startHeading = document.querySelector("#start-heading")
     let witch = document.querySelector(".witch-img")
     let fire = document.querySelector(".fire-img")
@@ -11,27 +12,25 @@ window.addEventListener("DOMContentLoaded", () => {
     let form = document.querySelector(".start-form")
     let audio = new Audio('/audio/The-Oppressed.mp3')
     
-    // Variables
+    // variables
     let gameOver = false
-    
     let arr = []
 
-    // if (gameOver) {
-    //     return
-    // }
+    // audio and loops
+    audio.loop = true
+    audio.play()
 
-    audio.play();
+    // should always start with this screen
     graphicsArea.classList.add("start-screen")
 
-
     //check for alphabet only (no numbers or characters)
-
     beginPress.addEventListener("click", gameStart)
+    randomWordGenerator.addEventListener("click", getWord)
 
     function gameStart(){
         var keyword = document.getElementById("secret").value
         if (!keyword || !keyword.match(/^[a-z]+$/)) {
-            alert("Only letters are allowed, no spaces or special characters.");
+            alert("Only letters are allowed, no spaces or special characters.")
             return
         } 
         // convert into array for comparison
@@ -149,6 +148,33 @@ window.addEventListener("DOMContentLoaded", () => {
                  }, 3500);
             }
         }
+    }
+
+    function Get(yourUrl){
+        var Httpreq = new XMLHttpRequest() // a new request
+        Httpreq.open("GET",yourUrl,false)
+        Httpreq.send(null)
+        return Httpreq.responseText         
+    }
+
+    function getWord() {
+        // grab object from api
+        let json_obj = JSON.parse(Get("https://api.datamuse.com/words?ml=horror"))
+
+        // tap into the word key and grab values
+        let horrorSyn = json_obj.map(horrorWord => horrorWord.word)
+
+
+        horrorSyn = horrorSyn.filter(word => word.indexOf(" ") == -1)
+        
+        // select random keyword from new array
+        let keyword = horrorSyn[Math.floor(Math.random() * horrorSyn.length)]
+    
+
+        document.getElementById("secret").value = keyword
+
+        gameStart()
+        
     }
 
 })
