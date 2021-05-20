@@ -149,6 +149,7 @@ h1 {
 
 .hidden-word{
     color: white;
+    display:hidden;
 }
 
 .border {

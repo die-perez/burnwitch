@@ -106,44 +106,40 @@ window.addEventListener("DOMContentLoaded", () => {
                     letterFound = true
                 }
             }
-
-            if (!letterFound && Guess.wrongGuesses < 4) {
-                Guess.wrongGuesses++
-                score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
-                scream.play()
-                witch.classList.add("wrong")
-            }
-
-            if (Guess.wrongGuesses === 2) {
-                setTimeout(function(){
-                    witch.className = "wrong-two"
-                    witch.setAttribute("src", "/img/witch3.png")
+            
+            if (!letterFound) {
+                if (Guess.wrongGuesses < 4) {
+                    Guess.wrongGuesses++
+                    score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
+                    scream.play()
                     witch.classList.add("wrong")
-                }, 1500)
-            }
+                }
 
-            if (Guess.wrongGuesses === 3) {
-                setTimeout(function(){
-                    witch.className = "wrong-two"
-                    witch.setAttribute("src", "/img/noun_Witch_3572374.png")
-                    witch.classList.add("wrong")
-                }, 1500)
-            }
-
-            if (Guess.wrongGuesses === 4){
-                score.innerText = "Her blood is on your hands..."
-                score.classList.add("final-message")
-                witch.classList.add("shake")
-                witch.setAttribute("src", "/img/witchface.png") 
-                
-                setTimeout(function(){ 
-                    dying.play()
-                    witch.classList.add("dead-witch")
-                 }, 2000);
-                 gameOver = true;
-            }
-
-            if (arr.length === Guess.rightGuesses){
+                if (Guess.wrongGuesses === 2) {
+                    setTimeout(function(){
+                        witch.className = "wrong-two"
+                        witch.setAttribute("src", "/img/witch3.png")
+                        witch.classList.add("wrong")
+                    }, 1500)
+                } else if (Guess.wrongGuesses === 3) {
+                    setTimeout(function(){
+                        witch.className = "wrong-two"
+                        witch.setAttribute("src", "/img/noun_Witch_3572374.png")
+                        witch.classList.add("wrong")
+                    }, 1500)
+                } else if (Guess.wrongGuesses === 4){
+                    score.innerText = "Her blood is on your hands..."
+                    score.classList.add("final-message")
+                    witch.classList.add("shake")
+                    witch.setAttribute("src", "/img/witchface.png") 
+                    
+                    setTimeout(function(){ 
+                        dying.play()
+                        witch.classList.add("dead-witch")
+                    }, 2000);
+                    gameOver = true;
+                }
+            } else if (arr.length === Guess.rightGuesses){
                 gameOver = true;
                 score.classList.add("final-message")
                 score.innerText = "You win!"
@@ -153,7 +149,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 setTimeout(function(){ 
                     laugh.play()
                     witch.classList.add("fly-out")
-                 }, 3500);
+                }, 3500);
             }
         }
     }
