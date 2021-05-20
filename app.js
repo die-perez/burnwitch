@@ -9,9 +9,9 @@ window.addEventListener("DOMContentLoaded", () => {
     let keyboard = document.querySelectorAll(".alphabet")
     let graphicsArea = document.querySelector(".graphics-area")
     let form = document.querySelector(".start-form")
+    let audio = new Audio('/audio/The-Oppressed.mp3')
     
     // Variables
-    let startScreen = true
     let gameOver = false
     
     let arr = []
@@ -20,9 +20,9 @@ window.addEventListener("DOMContentLoaded", () => {
     //     return
     // }
 
-    if (startScreen) {
-        graphicsArea.classList.add("start-screen")
-    }
+    audio.play();
+    graphicsArea.classList.add("start-screen")
+
 
     //check for alphabet only (no numbers or characters)
 
@@ -41,7 +41,6 @@ window.addEventListener("DOMContentLoaded", () => {
         pushKeywordToMain()
 
         // when button pressed and keyword is okay leave start screen
-        startScreen = false
         graphicsArea.classList.remove("start-screen")
         startHeading.classList.add("hide")
         form.classList.add("hide")
