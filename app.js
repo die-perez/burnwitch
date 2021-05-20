@@ -1,38 +1,52 @@
 window.addEventListener("DOMContentLoaded", () => {
     // Global event listeners
+    let beginPress = document.querySelector(".go")
+    let startHeading = document.querySelector("#start-heading")
     let witch = document.querySelector(".witch-img")
     let fire = document.querySelector(".fire-img")
     let keywordHoldingArea = document.querySelector("#wordToGuess")
     let score = document.querySelector(".scoreboard")
     let keyboard = document.querySelectorAll(".alphabet")
     let graphicsArea = document.querySelector(".graphics-area")
+    let form = document.querySelector(".start-form")
     
     // Variables
-    let start = true
-    let gameOVer = false
+    let startScreen = true
+    let gameOver = false
     
-    // //create prompt for keyword
-    // var keyword = prompt("Player one, type in a keyword")
-    
-    // //check for alphabet only (no numbers or characters)
-    // while (!keyword || !keyword.match(/^[a-z]+$/)) {
-    //     alert("Only letters are allowed, no spaces or special characters.");
-    //     var keyword = prompt("Player one, type in a keyword")
+    let arr = []
+
+    // if (gameOver) {
+    //     return
     // }
 
-    
-
-    if (start) {
+    if (startScreen) {
         graphicsArea.classList.add("start-screen")
     }
 
-    var keyword = "banana"
+    //check for alphabet only (no numbers or characters)
 
-    
+    beginPress.addEventListener("click", gameStart)
 
-    // convert into array for comparison
-    let arr = keyword.split("")
+    function gameStart(){
+        var keyword = document.getElementById("secret").value
+        if (!keyword || !keyword.match(/^[a-z]+$/)) {
+            alert("Only letters are allowed, no spaces or special characters.");
+            return
+        } 
+        // convert into array for comparison
+        arr = keyword.split("")
 
+        //run this 
+        pushKeywordToMain()
+
+        // when button pressed and keyword is okay leave start screen
+        startScreen = false
+        graphicsArea.classList.remove("start-screen")
+        startHeading.classList.add("hide")
+        form.classList.add("hide")
+    }
+  
     // have number empty slots on screen display keyword length
     function pushKeywordToMain(){
         for (i=0; i< arr.length; i++){
@@ -45,23 +59,22 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    pushKeywordToMain()
-
-
     for (let i=0; i<keyboard.length; i++){
         keyboard[i].addEventListener("click", clickLetter)
     }
 
      function clickLetter(event){
+        if (gameOver) {
+            return
+        }
+
          let letter = event.target.id
          let guess = new Guess (letter)
          guess.compare()
          event.target.classList.add("crossout")
          event.target.removeEventListener("click",clickLetter)
 
-         if (gameOVer){
-            event.target.removeEventListener("click",clickLetter)
-         }
+
      } 
 
 
@@ -83,7 +96,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 if (this.letter === arr[i]) {
                     let divs = Array.from(document.getElementsByClassName(this.letter))
                     divs.forEach(element => {
-                        element.classList.remove("hidden")
+                        element.classList.remove("hidden-word")
                     });
                     Guess.rightGuesses++
                     witch.classList.remove("wrong")
@@ -91,40 +104,42 @@ window.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            if (!letterFound) {
+            if (!letterFound && Guess.wrongGuesses < 4) {
                 Guess.wrongGuesses++
                 score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
                 witch.classList.add("wrong-one")
             }
 
             if (Guess.wrongGuesses === 2) {
-                witch.classList.add("fire-out")
+                witch.classList.add("flicker-out")
+                setTimeout(function(){
+                    witch.className = "wrong-two"
+                    witch.setAttribute("src", "/img/witch3.png")
+                    
+                }, 2000)
+            }
+
+            if (Guess.wrongGuesses === 3) {
+                witch.classList.add("flicker-out")
                 setTimeout(function(){
                     witch.className = "wrong-two"
                     witch.setAttribute("src", "/img/noun_Witch_3572374.png")
                 }, 2000)
             }
 
-            if (Guess.wrongGuesses === 3) {
-                witch.classList.add("fire-out")
-                setTimeout(function(){
-                    witch.className = "wrong-two"
-                    witch.setAttribute("src", "/img/noun_Witch_3572369.png")
-                }, 2000)
-            }
-
             if (Guess.wrongGuesses === 4){
-                gameOVer = true;
                 score.innerText = "Her blood is on your hands..."
                 score.classList.add("final-message")
-                witch.classList.add("shake") 
+                witch.classList.add("shake")
+                witch.setAttribute("src", "/img/witchface.png") 
                 setTimeout(function(){ 
                     witch.classList.add("dead-witch")
                  }, 3000);
+                 gameOver = true;
             }
 
             if (arr.length === Guess.rightGuesses){
-                gameOVer = true;
+                gameOver = true;
                 score.classList.add("final-message")
                 score.innerText = "You win!"
                 fire.classList.add("fire-out")
@@ -132,7 +147,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 witch.setAttribute("src", "/img/noun_Witch_13874.png")
                 setTimeout(function(){ 
                     witch.classList.add("fly-out")
-                 }, 5000);
+                 }, 3500);
             }
         }
     }
