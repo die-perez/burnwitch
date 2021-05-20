@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let laugh =  new Audio('/audio/wlaugh.mp3')
     let dying = new Audio('/audio/dying.mp3')
     let scream = new Audio('/audio/scream.mp3')
+    let rejoice = new Audio('/audio/rejoice.mp3')
     
     // variables
     let gameOver = false
@@ -100,6 +101,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         element.classList.remove("hidden-word")
                     });
                     Guess.rightGuesses++
+                    rejoice.play()
                     witch.classList.remove("wrong")
                     letterFound = true
                 }
@@ -110,12 +112,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
                 scream.play()
                 witch.classList.add("wrong")
-                witch.classList.add("flicker-out")
             }
 
             if (Guess.wrongGuesses === 2) {
-                witch.classList.add("flicker-out")
-                witch.classList.add("shake")
                 setTimeout(function(){
                     witch.className = "wrong-two"
                     witch.setAttribute("src", "/img/witch3.png")
@@ -124,7 +123,6 @@ window.addEventListener("DOMContentLoaded", () => {
             }
 
             if (Guess.wrongGuesses === 3) {
-                witch.classList.add("flicker-out")
                 setTimeout(function(){
                     witch.className = "wrong-two"
                     witch.setAttribute("src", "/img/noun_Witch_3572374.png")
@@ -137,6 +135,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 score.classList.add("final-message")
                 witch.classList.add("shake")
                 witch.setAttribute("src", "/img/witchface.png") 
+                
                 setTimeout(function(){ 
                     dying.play()
                     witch.classList.add("dead-witch")
