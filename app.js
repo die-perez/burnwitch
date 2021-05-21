@@ -11,11 +11,11 @@ window.addEventListener("DOMContentLoaded", () => {
     let keyboard = document.querySelectorAll(".alphabet")
     let graphicsArea = document.querySelector(".graphics-area")
     let form = document.querySelector(".start-form")
-    let audio = new Audio('/audio/The-Oppressed.mp3')
-    let laugh =  new Audio('/audio/wlaugh.mp3')
-    let dying = new Audio('/audio/dying.mp3')
-    let scream = new Audio('/audio/scream.mp3')
-    let rejoice = new Audio('/audio/rejoice.mp3')
+    let audio = new Audio('audio/The-Oppressed.mp3')
+    let laugh =  new Audio('audio/wlaugh.mp3')
+    let dying = new Audio('audio/dying.mp3')
+    let scream = new Audio('audio/scream.mp3')
+    let rejoice = new Audio('audio/rejoice.mp3')
     
     // variables
     let gameOver = false
@@ -134,20 +134,20 @@ window.addEventListener("DOMContentLoaded", () => {
                 if (Guess.wrongGuesses === 2) {
                     setTimeout(function(){
                         witch.className = "wrong-two"
-                        witch.setAttribute("src", "/img/witch3.png")
+                        witch.setAttribute("src", "img/witch3.png")
                         witch.classList.add("wrong")
                     }, 1500)
                 } else if (Guess.wrongGuesses === 3) {
                     setTimeout(function(){
                         witch.className = "wrong-two"
-                        witch.setAttribute("src", "/img/noun_Witch_3572374.png")
+                        witch.setAttribute("src", "img/noun_Witch_3572374.png")
                         witch.classList.add("wrong")
                     }, 1500)
                 } else if (Guess.wrongGuesses === 4){
                     score.innerText = "Her blood is on your hands..."
                     score.classList.add("final-message")
                     witch.classList.add("shake")
-                    witch.setAttribute("src", "/img/witchface.png") 
+                    witch.setAttribute("src", "img/witchface.png") 
                     setTimeout(function(){ 
                         dying.play()
                         witch.classList.add("dead-witch")
@@ -160,7 +160,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 score.innerText = "You win!"
                 fire.classList.add("fire-out")
                 witch.className = "free-witch"
-                witch.setAttribute("src", "/img/noun_Witch_13874.png")
+                witch.setAttribute("src", "img/noun_Witch_13874.png")
                 setTimeout(function(){ 
                     laugh.play()
                     witch.classList.add("fly-out")
