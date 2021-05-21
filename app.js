@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let beginPress = document.querySelector(".go")
     let randomWordGenerator = document.querySelector(".random")
     let startHeading = document.querySelector("#start-heading")
+    let playHeading = document.querySelector("#play-heading")
     let witch = document.querySelector(".witch-img")
     let fire = document.querySelector(".fire-img")
     let keywordHoldingArea = document.querySelector("#wordToGuess")
@@ -26,10 +27,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // should always start with this screen
     graphicsArea.classList.add("start-screen")
+    startHeading.classList.add("focus-in-expand")
 
     //check for alphabet only (no numbers or characters)
     beginPress.addEventListener("click", gameStart)
     randomWordGenerator.addEventListener("click", getWord)
+    
 
     function gameStart(){
         var keyword = document.getElementById("secret").value
@@ -76,7 +79,6 @@ window.addEventListener("DOMContentLoaded", () => {
          event.target.classList.add("crossout")
          event.target.removeEventListener("click",clickLetter)
 
-
      } 
 
 
@@ -84,6 +86,7 @@ window.addEventListener("DOMContentLoaded", () => {
     class Guess {
         static wrongGuesses = 0
         static rightGuesses = 0
+        static incorrectLeft = 4
 
         constructor(letter){
             this.letter = letter
@@ -110,7 +113,12 @@ window.addEventListener("DOMContentLoaded", () => {
             if (!letterFound) {
                 if (Guess.wrongGuesses < 4) {
                     Guess.wrongGuesses++
-                    score.innerText = `Wrong guesses: ${Guess.wrongGuesses}`
+                    Guess.incorrectLeft--
+                    score.innerText = `Wrong guesses: ${Guess.wrongGuesses}, you have ${Guess.incorrectLeft} wrong guesses left!`
+                    score.classList.add("attention")
+                    setTimeout(function(){
+                        score.classList.remove("attention")
+                    }, 1000)
                     scream.play()
                     witch.classList.add("wrong")
                 }
