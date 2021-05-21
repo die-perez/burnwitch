@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", () => {
         // convert into array for comparison
         arr = keyword.split("")
 
-        //run this 
+        //call function when keyword is ready 
         pushKeywordToMain()
 
         // when button pressed and keyword is okay leave start screen
@@ -64,21 +64,27 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // adding event listeners to entire on-screen keyboard
     for (let i=0; i<keyboard.length; i++){
         keyboard[i].addEventListener("click", clickLetter)
     }
 
+    // function triggered when even happens
      function clickLetter(event){
+        
+        // determining if game is over so that buttons will stop listening for events
         if (gameOver) {
             return
         }
 
+        // grab letter id and pass it to new guess class for verification
          let letter = event.target.id
          let guess = new Guess (letter)
          guess.compare()
+
+         // cross out and silence letter key once tried
          event.target.classList.add("crossout")
          event.target.removeEventListener("click",clickLetter)
-
      } 
 
 
@@ -116,6 +122,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     Guess.incorrectLeft--
                     score.innerText = `Wrong guesses: ${Guess.wrongGuesses}, you have ${Guess.incorrectLeft} wrong guesses left!`
                     score.classList.add("attention")
+
+                    // attention class only runs once when applied so it needs to be removed after it's used
                     setTimeout(function(){
                         score.classList.remove("attention")
                     }, 1000)
@@ -140,7 +148,6 @@ window.addEventListener("DOMContentLoaded", () => {
                     score.classList.add("final-message")
                     witch.classList.add("shake")
                     witch.setAttribute("src", "/img/witchface.png") 
-                    
                     setTimeout(function(){ 
                         dying.play()
                         witch.classList.add("dead-witch")
@@ -169,26 +176,21 @@ window.addEventListener("DOMContentLoaded", () => {
         return Httpreq.responseText         
     }
 
+
+    // using datamuse api grabbing "horror" synonyms 
     function getWord() {
         // grab object from api
         let json_obj = JSON.parse(Get("https://api.datamuse.com/words?ml=horror"))
 
         // tap into the word key and grab values
         let horrorSyn = json_obj.map(horrorWord => horrorWord.word)
-
-
         horrorSyn = horrorSyn.filter(word => word.indexOf(" ") == -1)
         
         // select random keyword from new array
         let keyword = horrorSyn[Math.floor(Math.random() * horrorSyn.length)]
-    
-
         document.getElementById("secret").value = keyword
-
-        gameStart()
-        
+        gameStart()   
     }
-
 })
 
 
