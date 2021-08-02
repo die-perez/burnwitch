@@ -7,7 +7,6 @@ Also, why is hangman called hangman when you dont want the man to hang? For clar
 
 - HTML/CSS
 - Javascript
-- Tailwind *possibly* 
 
 ## **MVP Checklist**
 
